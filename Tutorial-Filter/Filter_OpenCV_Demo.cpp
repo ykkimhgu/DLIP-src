@@ -1,6 +1,6 @@
-# Image Proccessing with Deep Learning
-# Tutorial - Spatial Filtering in OpenCV
-# 2021-Spring 
+//Image Proccessing with Deep Learning
+// Tutorial - Spatial Filtering in OpenCV
+// 2021-Spring 
 
 
 #include <opencv.hpp>

@@ -1,4 +1,9 @@
-#include <opencv.hpp>
+/*------------------------------------------------------/
+* Image Proccessing with Deep Learning
+* OpenCV : Threshold Demo
+* Created: 2021-Spring
+------------------------------------------------------*/
+#include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace cv;
@@ -9,7 +14,7 @@ int main()
 {
 	Mat src, src_gray, dst, dst_morph;
 
-	src = imread("pcb_gray.jpg", 1);    // Load an image
+	src = imread("pcb.jpg", 0);    // Load an image
 
 	if (src.empty())					// Load image check
 	{
@@ -38,7 +43,7 @@ int main()
 	// Create a window to display results
 	namedWindow("ThreshWIndow", CV_WINDOW_AUTOSIZE); //CV_WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
 	imshow("ThreshWIndow", dst); // Show image
-		
+
 	waitKey(0);//Pause the program
 	return 0;
 }

@@ -16,8 +16,8 @@
 clc; clear all; close all;
 
 % image read
-f = imread('Pattern_GaussNoise.jpg');
-f = rgb2gray(f);
+f = imread('Pattern_original.tif');
+f = im2gray(f);
 [M, N] = size(f);
 
 figure, imshow(f)

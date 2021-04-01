@@ -13,7 +13,7 @@ Point origin;
 Rect selection;
 bool selectObject = false;
 bool trackObject = false;
-int, hmin = 1, hmax = 179, smin = 30, smax = 255, vmin = 0, vmax = 255;
+int hmin = 1, hmax = 179, smin = 30, smax = 255, vmin = 0, vmax = 255;
 
 /// On mouse event 
 static void onMouse(int event, int x, int y, int, void*);
@@ -23,11 +23,13 @@ int main()
 	Mat image_disp, hsv, hue, mask, dst;
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
-
+	
 	image = imread("color_ball.jpg");
 	image.copyTo(image_disp);
 
-	// TrackBar º≥¡§
+	Mat dst_track = Mat::zeros(image.size(), CV_8UC3);
+
+	// TrackBar ÏÑ§Ï†ï
 	namedWindow("Source", 0);
 	setMouseCallback("Source", onMouse, 0);
 	createTrackbar("Hmin", "Source", &hmin, 179, 0);
@@ -37,7 +39,7 @@ int main()
 	createTrackbar("Vmin", "Source", &vmin, 255, 0);
 	createTrackbar("Vmax", "Source", &vmax, 255, 0);
 
-
+	
 	for (;;)
 	{
 		imshow("Source", image);
@@ -96,7 +98,7 @@ int main()
 
 		if (selectObject && selection.area() > 0)  // Left Mouse is being clicked and dragged
 		{
-			// Mouse Drag¿ª »≠∏Èø° ∫∏ø©¡÷±‚ ¿ß«‘
+			// Mouse DragÏùÑ ÌôîÎ©¥Ïóê Î≥¥Ïó¨Ï£ºÍ∏∞ ÏúÑÌï®
 			Mat roi_RGB(image_disp, selection);
 			bitwise_not(roi_RGB, roi_RGB);
 			imshow("Source", image_disp);
@@ -131,10 +133,16 @@ int main()
 
 
 		/// Draw the Contour Box on Original Image ///
-		drawContours(image_disp, contours, largestComp, Scalar(255, 255, 255), 4, 8, hierarchy);
 		Rect boxPoint = boundingRect(contours[largestComp]);
 		rectangle(image_disp, boxPoint, Scalar(255, 0, 255), 3);
+		namedWindow("Contour_Box", 0);
+		imshow("Contour_Box", image_disp);
 
+
+		/// Continue Drawing the Contour Box  ///
+		rectangle(dst_track, boxPoint, Scalar(255, 0, 255), 3);
+		namedWindow("Contour_Track", 0);
+		imshow("Contour_Track", dst_track);
 
 		char c = (char)waitKey(10);
 		if (c == 27)

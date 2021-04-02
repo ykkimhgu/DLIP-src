@@ -3,7 +3,7 @@
 //#include "opencv2/highgui/highgui.hpp"
 //#include <ctype.h>
 #include <iostream>
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 using namespace cv;
 using namespace std;
@@ -23,7 +23,7 @@ int main()
 	Mat image_disp, hsv, hue, mask, dst;
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
-	
+
 	image = imread("color_ball.jpg");
 	image.copyTo(image_disp);
 
@@ -39,16 +39,16 @@ int main()
 	createTrackbar("Vmin", "Source", &vmin, 255, 0);
 	createTrackbar("Vmax", "Source", &vmax, 255, 0);
 
-	
+
 	for (;;)
 	{
 		imshow("Source", image);
-		cvtColor(image, hsv, COLOR_BGR2HSV);
 		/******** You can use RGB instead of HSV ********/
+		cvtColor(image, hsv, COLOR_BGR2HSV);
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE
-		
+
 
 		/******** Add Pre-Processing such as filtering etc  ********/
 		// YOUR CODE GOES HERE
@@ -91,7 +91,7 @@ int main()
 			// YOUR CODE GOES HERE
 			// YOUR CODE GOES HERE
 			// YOUR CODE GOES HERE
-			
+
 		}
 
 
@@ -104,44 +104,46 @@ int main()
 		}
 		image.copyTo(image_disp);
 
-		
-		
+
+
 		///  Find All Contour   ///
 		findContours(dst, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
-
-		/// Find the Contour with the largest area ///
-		int idx = 0, largestComp = 0;
-		double maxArea = 0;
-		for (; idx >= 0; idx = hierarchy[idx][0])
-		{
-			const vector<Point>& c = contours[idx];
-			double area = fabs(contourArea(Mat(c)));		
-			if (area > maxArea)
+		if (contours.size()>0)
+		{ 
+			/// Find the Contour with the largest area ///
+			int idx = 0, largestComp = 0;
+			double maxArea = 0;
+			for (; idx >= 0; idx = hierarchy[idx][0])
 			{
-				maxArea = area;
-				largestComp = idx;
+				const vector<Point>& c = contours[idx];
+				double area = fabs(contourArea(Mat(c)));
+				if (area > maxArea)
+				{
+					maxArea = area;
+					largestComp = idx;
+				}
 			}
+
+			///  Draw the max Contour on Black-background  Image ///
+			Mat dst_out = Mat::zeros(dst.size(), CV_8UC3);
+			drawContours(dst_out, contours, largestComp, Scalar(0, 0, 255), 2, 8, hierarchy);
+			namedWindow("Contour", 0);
+			imshow("Contour", dst_out);
+
+
+			/// Draw the Contour Box on Original Image ///
+			Rect boxPoint = boundingRect(contours[largestComp]);
+			rectangle(image_disp, boxPoint, Scalar(255, 0, 255), 3);
+			namedWindow("Contour_Box", 0);
+			imshow("Contour_Box", image_disp);
+
+
+			/// Continue Drawing the Contour Box  ///
+			rectangle(dst_track, boxPoint, Scalar(255, 0, 255), 3);
+			namedWindow("Contour_Track", 0);
+			imshow("Contour_Track", dst_track);
 		}
-
-		///  Draw the max Contour on Black-background  Image ///
-		Mat dst_out = Mat::zeros(dst.size(), CV_8UC3);
-		drawContours(dst_out, contours, largestComp, Scalar(0, 0, 255), 2, 8, hierarchy);		
-		namedWindow("Contour", 0);
-		imshow("Contour", dst_out);
-
-
-		/// Draw the Contour Box on Original Image ///
-		Rect boxPoint = boundingRect(contours[largestComp]);
-		rectangle(image_disp, boxPoint, Scalar(255, 0, 255), 3);
-		namedWindow("Contour_Box", 0);
-		imshow("Contour_Box", image_disp);
-
-
-		/// Continue Drawing the Contour Box  ///
-		rectangle(dst_track, boxPoint, Scalar(255, 0, 255), 3);
-		namedWindow("Contour_Track", 0);
-		imshow("Contour_Track", dst_track);
 
 		char c = (char)waitKey(10);
 		if (c == 27)

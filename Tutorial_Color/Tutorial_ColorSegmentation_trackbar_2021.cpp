@@ -43,6 +43,7 @@ int main()
 	for (;;)
 	{
 		imshow("Source", image);
+		cvtColor(image, hsv, COLOR_BGR2HSV);
 		/******** You can use RGB instead of HSV ********/
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE

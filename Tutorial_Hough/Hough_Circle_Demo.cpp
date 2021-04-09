@@ -1,66 +1,45 @@
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/imgproc.hpp"
+#include <opencv2/opencv.hpp>
 using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv)
 {
-	// Declare the output variables
-	Mat dst, cdst, cdstP;
-
-	// Loads an image
-	const char* filename = "../images/Lane_test.jpg";
-	Mat src = imread(filename, IMREAD_GRAYSCALE);
-
-	// Check if image is loaded fine
-	if (src.empty()) {
+	Mat src, gray;
+	
+	String filename = "pillsetc.png";
+	
+	/* Read the image */
+	src = imread(filename, 1);
+	
+	if (!src.data)
+	{
 		printf(" Error opening image\n");
 		return -1;
 	}
+		
+	cvtColor(src, gray, COLOR_BGR2GRAY);
 
-	// Edge detection
-	Canny(src, dst, 50, 200, 3);
+	/* smooth it, otherwise a lot of false circles may be detected */
+	GaussianBlur(gray, gray, Size(9, 9), 2, 2);
 
-	// Copy edge results to the images that will display the results in BGR
-	cvtColor(dst, cdst, COLOR_GRAY2BGR);
-	cdstP = cdst.clone();
-
-	// (Option 1) Standard Hough Line Transform
-	vector<Vec2f> lines;
-	HoughLines(dst, lines, 1, CV_PI / 180, 150, 0, 0);
-
-	// Draw the detected lines
-	for (size_t i = 0; i < lines.size(); i++)
+	vector<Vec3f> circles;
+	HoughCircles(gray, circles, 3, 2, gray.rows / 4, 200, 100);
+	for (size_t i = 0; i < circles.size(); i++)
 	{
-		float rho = lines[i][0], theta = lines[i][1];
-		Point pt1, pt2;
-		double a = cos(theta), b = sin(theta);
-		double x0 = a * rho, y0 = b * rho;
-		pt1.x = cvRound(x0 + 1000 * (-b));
-		pt1.y = cvRound(y0 + 1000 * (a));
-		pt2.x = cvRound(x0 - 1000 * (-b));
-		pt2.y = cvRound(y0 - 1000 * (a));
-		line(cdst, pt1, pt2, Scalar(0, 0, 255), 3, LINE_AA);
+		Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+		int radius = cvRound(circles[i][2]);
+
+		/* draw the circle center */
+		circle(src, center, 3, Scalar(0, 255, 0), -1, 8, 0);
+
+		/* draw the circle outline */
+		circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
 	}
 
-	// (Option 2) Probabilistic Line Transform
-	vector<Vec4i> linesP;
-	HoughLinesP(dst, linesP, 1, CV_PI / 180, 50, 50, 10);
-
-	// Draw the lines
-	for (size_t i = 0; i < linesP.size(); i++)
-	{
-		Vec4i l = linesP[i];
-		line(cdstP, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 3, LINE_AA);
-	}
-
-	// Show results
-	imshow("Source", src);
-	imshow("Detected Lines (in red) - Standard Hough Line Transform", cdst);
-	imshow("Detected Lines (in red) - Probabilistic Line Transform", cdstP);
-
-	// Wait and Exit
+	namedWindow("circles", 1);
+	imshow("circles", src);
+	
+	/* Wait and Exit */
 	waitKey();
 	return 0;
 }

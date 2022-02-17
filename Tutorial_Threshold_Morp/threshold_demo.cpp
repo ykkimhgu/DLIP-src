@@ -14,7 +14,7 @@ int main()
 {
 	Mat src, src_gray, dst, dst_morph;
 
-	src = imread("pcb.jpg", 0);    // Load an image
+	src = imread("coin.jpg", 0);    // Load an image
 
 	if (src.empty())					// Load image check
 	{

@@ -2,7 +2,7 @@
 //@ Deep Learning Image Processing  by Young-Keun Kim - Handong Global University
 //
 //
-// Description     : Exercise1:  C++ Tutorial  Answer
+// Description     : Exercise:  C++ reference exercise
 //------------------------------------------------------------------------------------------*/
 
 #include <iostream>

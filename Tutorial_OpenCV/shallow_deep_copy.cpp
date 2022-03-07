@@ -17,12 +17,12 @@ int main()
 	src = imread("image.jpg", 0);   //graysacle
 
 	/* Shallow Copy */
-	src.copyTo(dst_shallow);
+	dst_shallow = src;
 	flip(dst_shallow, dst_shallow, 1);
 	imshow("src after shallow copy", src);
 
 	/* Deep Copy */
-	dst_deep = src;
+	src.copyTo(dst_deep);
 	flip(dst_deep, dst_deep, 1);
 	imshow("src after deep copy", src);
 

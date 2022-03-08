@@ -24,7 +24,7 @@ int main()
 	printf("%d\n", img.at<Vec3b>(0, 0)[1]);
 	printf("%d\n", img.at<Vec3b>(0, 0)[2]);
 
-	// solution for exercise (accesing using "at")
+	// solution for exercise (accessing using "at")
 	double avgVal = 0;
 	for (int v = 0; v < img_gray.rows; v++)
 		for (int u = 0; u < img_gray.cols; u++)

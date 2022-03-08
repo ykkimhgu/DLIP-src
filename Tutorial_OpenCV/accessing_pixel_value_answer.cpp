@@ -1,6 +1,6 @@
 /*------------------------------------------------------/
 * Image Proccessing with Deep Learning
-* OpenCV Tutorial: Aceessing pixel value
+* OpenCV Tutorial: Aceessing pixel value answer
 * Created: 2021-Spring
 ------------------------------------------------------*/
 #include <iostream>

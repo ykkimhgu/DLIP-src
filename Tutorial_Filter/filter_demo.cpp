@@ -52,20 +52,21 @@ void main()
 
 
 	/* 2D Convolution of a filter kernel */
+	/* Design a normalized box filter kernel 5 by 5 */	
+	src.convertTo(src, CV_8UC1);
+
 	Mat kernel;
 	delta = 0;
 	ddepth = -1;
 	kernel_size = 5;
-	Point anchor = Point(-1, -1);
-
-	src.convertTo(src, CV_8UC1);
-
-
-	/* Example 1. design a normalized box filter kernel 5 by 5 */
+	Point anchor = Point(-1, -1);		
 	kernel = Mat::ones(kernel_size, kernel_size, CV_32F) / (float)(kernel_size * kernel_size);
 	filter2D(src, dst, ddepth, kernel, anchor, delta);
+	
 	namedWindow("Conv2D", CV_WINDOW_AUTOSIZE);
 	cv::imshow("Conv2D", dst);
+
+
 
 	cv::waitKey(0);
 }

@@ -32,7 +32,7 @@ int main()
 
 		/*  read a new frame from video  */
 		bool bSuccess = cap.read(src);
-		
+
 		if (!bSuccess)	// if not success, break loop
 		{
 			cout << "Cannot find a frame from  video stream\n";
@@ -50,9 +50,17 @@ int main()
 		{
 			filter_type = 1;	// blur
 		}
+		
+		/* Keyboard input for other filters*/
+		// ADD YOUR CODE HERE
+		// ADD YOUR CODE HERE
+		// ADD YOUR CODE HERE
 
 		if (filter_type == 1)
-			blur(src, dst, cv::Size(kernel_size, kernel_size), cv::Point(-1, -1));
+			blur(src, dst, cv::Size(kernel_size, kernel_size), cv::Point(-1, -1));		
+		/* Apply filter accroding to filter type */
+		// ADD YOUR CODE HERE
+		// ADD YOUR CODE HERE
 		else
 			src.copyTo(dst);
 

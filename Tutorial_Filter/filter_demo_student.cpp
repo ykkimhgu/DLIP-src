@@ -13,7 +13,7 @@ using namespace cv;
 void main()
 {
 	cv::Mat src, dst;
-	src = cv::imread("sudoku.jpg", 0);
+	src = cv::imread("Pattern_original_GaussNoise.tif", 0);
 
 	int i = 3;
 	Size kernelSize = cv::Size(i, i);

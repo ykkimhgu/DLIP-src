@@ -20,7 +20,7 @@ void main()
 
 	/* Blur */
 	cv::blur(src, dst, cv::Size(i, i), cv::Point(-1, -1));
-	namedWindow("Blur", WINDOW_NORMAL);
+	// namedWindow("Blur", WINDOW_NORMAL);
 	imshow("Blur", dst);
 
 	/* Gaussian Filter */

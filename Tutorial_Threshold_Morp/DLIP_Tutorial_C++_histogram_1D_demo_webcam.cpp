@@ -60,14 +60,14 @@ void plotHist(Mat src, string plotname, int width, int height) {
 
 	double min_val, max_val;
 	cv::minMaxLoc(hist, &min_val, &max_val);
-	Mat hist_normed = hist * height / max_val; // max_val¸¦ plot ÀÌ¹ÌÁöÀÇ ÃÖ°í ³ôÀÌ¿¡ ¸ÂÃçÁöµµ·Ï ÇÔ
-	float bin_w = (float)width / histSize;	// plotÀÌ¹ÌÁö °¡·ÎÅ©±â¿¡ ¸ÂÃß¾î °¡·Î¹æÇâ Ãà °£°İ°ª ÁöÁ¤
-	Mat histImage(height, width, CV_8UC1, Scalar(0));	// plot¿ëµµ·Î »ç¿ëµÉ width, height Å©±âÀÇ 8ºñÆ® Èò»ö ÀÌ¹ÌÁö »ı¼º
-	for (int i = 0; i < histSize - 1; i++) {	// ±×·¡ÇÁ´Â µÎ Á¡À» ÀÕ´Â Çü½ÄÀ¸·Î ÁøÇàµÇ¹Ç·Î 256 - 1¹ø¸¸Å­ ÁøÇà
-		line(histImage,	// histImage¿¡ ¶óÀÎÀ» ±×¸®´Â ÇÔ¼ö
-			Point((int)(bin_w * i), height - cvRound(hist_normed.at<float>(i, 0))),			// ½ÃÀÛÁ¡ : bin_w * k , normalized_val * n[k]
-			Point((int)(bin_w * (i + 1)), height - cvRound(hist_normed.at<float>(i + 1, 0))),	// Á¾·áÁ¡ : bin_w * (k+1) , normalized_val * n[k+1]
-			Scalar(255), 2, 8, 0);													// ¼±ÀÇ »ö±òÀº °ËÁ¤(0), ¼±µÎ²²´Â linewidth·Î ÁöÁ¤
+	Mat hist_normed = hist * height / max_val; // max_valë¥¼ plot ì´ë¯¸ì§€ì˜ ìµœê³  ë†’ì´ì— ë§ì¶°ì§€ë„ë¡ í•¨
+	float bin_w = (float)width / histSize;	// plotì´ë¯¸ì§€ ê°€ë¡œí¬ê¸°ì— ë§ì¶”ì–´ ê°€ë¡œë°©í–¥ ì¶• ê°„ê²©ê°’ ì§€ì •
+	Mat histImage(height, width, CV_8UC1, Scalar(0));	// plotìš©ë„ë¡œ ì‚¬ìš©ë  width, height í¬ê¸°ì˜ 8ë¹„íŠ¸ í°ìƒ‰ ì´ë¯¸ì§€ ìƒì„±
+	for (int i = 0; i < histSize - 1; i++) {	// ê·¸ë˜í”„ëŠ” ë‘ ì ì„ ì‡ëŠ” í˜•ì‹ìœ¼ë¡œ ì§„í–‰ë˜ë¯€ë¡œ 256 - 1ë²ˆë§Œí¼ ì§„í–‰
+		line(histImage,	// histImageì— ë¼ì¸ì„ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
+			Point((int)(bin_w * i), height - cvRound(hist_normed.at<float>(i, 0))),			// ì‹œì‘ì  : bin_w * k , normalized_val * n[k]
+			Point((int)(bin_w * (i + 1)), height - cvRound(hist_normed.at<float>(i + 1, 0))),	// ì¢…ë£Œì  : bin_w * (k+1) , normalized_val * n[k+1]
+			Scalar(255), 2, 8, 0);													// ì„ ì˜ ìƒ‰ê¹”ì€ ê²€ì •(0), ì„ ë‘ê»˜ëŠ” linewidthë¡œ ì§€ì •
 	}
 
 	imshow(plotname, histImage);

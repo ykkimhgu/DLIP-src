@@ -16,7 +16,7 @@ using namespace cv;
 int main(int argc, char** argv)
 {
     //! [Load image]
-    CommandLineParser parser(argc, argv, "{@input | coins.png | input image}");
+    CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
     Mat src = imread(samples::findFile(parser.get<String>("@input")), 0);
     if (src.empty())
     {

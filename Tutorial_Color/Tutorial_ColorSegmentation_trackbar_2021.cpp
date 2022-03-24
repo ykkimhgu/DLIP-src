@@ -43,17 +43,16 @@ int main()
 	for (;;)
 	{
 		imshow("Source", image);
-		/******** You can use RGB instead of HSV ********/
-		cvtColor(image, hsv, COLOR_BGR2HSV);
-		// YOUR CODE GOES HERE
-		// YOUR CODE GOES HERE
-		// YOUR CODE GOES HERE
-
+		/******** Convert BGR to HSV ********/
+		// input mat: image
+		// output mat: hsv
+		// cvtColor(               ); //// YOUR CODE GOES HERE
+		
 
 		/******** Add Pre-Processing such as filtering etc  ********/
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE
-		// YOUR CODE GOES HERE
+
 
 
 		/// set dst as the output of InRange
@@ -64,7 +63,7 @@ int main()
 		/******** Add Post-Processing such as morphology etc  ********/
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE
-		// YOUR CODE GOES HERE
+
 
 
 		namedWindow("InRange", 0);

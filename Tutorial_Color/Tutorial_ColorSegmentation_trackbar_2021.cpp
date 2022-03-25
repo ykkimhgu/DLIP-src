@@ -22,7 +22,6 @@ int main()
 {
 	Mat image_disp, hsv, hue, mask, dst;
 	vector<vector<Point> > contours;
-	vector<Vec4i> hierarchy;
 
 	image = imread("color_ball.jpg");
 	image.copyTo(image_disp);
@@ -40,7 +39,7 @@ int main()
 	createTrackbar("Vmax", "Source", &vmax, 255, 0);
 
 
-	for (;;)
+	while (true)
 	{
 		imshow("Source", image);
 		/******** Convert BGR to HSV ********/
@@ -73,9 +72,7 @@ int main()
 		if (trackObject)
 		{
 			trackObject = false;					// Terminate the next Analysis loop
-			Mat roi_RGB(image, selection); 			// Set ROI by the selection box		
-			Mat roi_HSV;
-			cvtColor(roi_RGB, roi_HSV, CV_BGR2HSV);
+			Mat roi_HSV(hsv, selection); 			// Set ROI by the selection box		
 			Scalar means, stddev;
 			meanStdDev(roi_HSV, means, stddev);
 			cout << "\n Selected ROI Means= " << means << " \n stddev= " << stddev;
@@ -106,33 +103,29 @@ int main()
 
 
 		///  Find All Contour   ///
-		findContours(dst, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+		findContours(dst, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
 		if (contours.size()>0)
 		{ 
 			/// Find the Contour with the largest area ///
-			int idx = 0, largestComp = 0;
 			double maxArea = 0;
-			for (; idx >= 0; idx = hierarchy[idx][0])
-			{
-				const vector<Point>& c = contours[idx];
-				double area = fabs(contourArea(Mat(c)));
-				if (area > maxArea)
-				{
-					maxArea = area;
-					largestComp = idx;
-				}
-			}
+			int maxArea_idx = 0;
 
+			for (int i = 0; i < contours.size(); i++)
+				if (contourArea(contours[i]) > maxArea) {
+					maxArea = contourArea(contours[i]);
+					maxArea_idx = i;
+				}
+			
 			///  Draw the max Contour on Black-background  Image ///
 			Mat dst_out = Mat::zeros(dst.size(), CV_8UC3);
-			drawContours(dst_out, contours, largestComp, Scalar(0, 0, 255), 2, 8, hierarchy);
+			drawContours(dst_out, contours, maxArea_idx, Scalar(0, 0, 255), 2, 8);
 			namedWindow("Contour", 0);
 			imshow("Contour", dst_out);
 
 
 			/// Draw the Contour Box on Original Image ///
-			Rect boxPoint = boundingRect(contours[largestComp]);
+			Rect boxPoint = boundingRect(contours[maxArea_idx]);
 			rectangle(image_disp, boxPoint, Scalar(255, 0, 255), 3);
 			namedWindow("Contour_Box", 0);
 			imshow("Contour_Box", image_disp);

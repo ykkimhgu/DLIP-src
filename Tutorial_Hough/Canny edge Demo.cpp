@@ -42,7 +42,7 @@ void CannyThreshold(int, void*)
 int main(int argc, char** argv)
 {
 	/// Load an image
-	//const char* filename = "../images/pillset.png";
+	//const char* filename = "../images/pillsetc.png";
 	const char* filename = "../images/coins.png";
 	//const char* filename = "../images/TrafficSign1.png";
 

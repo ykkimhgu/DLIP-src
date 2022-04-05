@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 	Mat dst, cdst, cdstP;
 
 	// Loads an image
-	const char* filename = "../images/Lane_test.jpg";
+	const char* filename = "../images/Lane_test_img.JPG";
 	Mat src = imread(filename, IMREAD_GRAYSCALE);
 
 	// Check if image is loaded fine

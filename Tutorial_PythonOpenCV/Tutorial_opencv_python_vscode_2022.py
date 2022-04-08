@@ -21,7 +21,7 @@ from matplotlib import pyplot as plt
 """## Open & Show Image File
 > matplotlib에서 rgb 채널 순서가 다르다
 * matplot:  R-B-G
-* OpenCV:   G-B-R
+* OpenCV:   B-G-R
 """
 # Load image
 img = cv.imread('handonglogo.jpg')
@@ -29,10 +29,11 @@ img = cv.imread('handonglogo.jpg')
 cv.imshow('frame',img)    # NOT available in COLAB or Jupyter
 
 
-# matplotlib에서 rgb 채널 순서가 다름
+# matplotlib에서 rgb 채널 순서가 다르다
 # matplot:  R-B-G
-# OpenCV:   G-B-R
-imgPlt = cv.imread('handonglogo.jpg', cv.COLOR_BGR2RGB)
+# OpenCV:   B-G-R
+
+imgPlt = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
 # Show Image using matplotlib
 plt.imshow(imgPlt),plt.title('Original')

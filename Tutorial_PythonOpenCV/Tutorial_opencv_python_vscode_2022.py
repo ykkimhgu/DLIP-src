@@ -230,10 +230,11 @@ plt.show()
 [inRange()](https://docs.opencv.org/3.4/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981)
 ` dst= cv2.inRange(src, lowerb, upperb, dst=None)`
 """
-
 # Open Image in RGB
-img = cv.imread('color_ball.jpg',cv.COLOR_BGR2RGB)
+img = cv.imread('color_ball.jpg')
 
+# matplotlib에서 rgb 채널 순서가 다르다
+imgPlt = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
 # Convert BRG to HSV 
 hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
@@ -248,16 +249,17 @@ mask = cv.inRange(hsv, lower_range, upper_range)
 dst = cv.bitwise_and(hsv,hsv, mask= mask)
 
 # Plot Results
-#cv2.imshow('frame',frame)
-#cv2.imshow('res',res)
+#cv.imshow('frame',frame)
+#cv.imshow('res',res)
 titles = ['Original ', 'Mask','Inrange']
-images = [img, mask, dst]
+images = [imgPlt, mask, dst]
 
 for i in range(3):
     plt.subplot(1,3,i+1),plt.imshow(images[i])
     plt.title(titles[i])
     plt.xticks([]),plt.yticks([])
 plt.show()
+
 
 
 

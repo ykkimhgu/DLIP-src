@@ -1,0 +1,7 @@
+train: ../datasets/dataset_mask/images/training/
+val: ../datasets/dataset_mask/images/validation/
+# number of classes
+nc: 2
+
+# class names
+names: ['with mask', 'without mask']

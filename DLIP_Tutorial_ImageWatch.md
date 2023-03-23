@@ -33,7 +33,7 @@ DLIP Tutorial for ***Image Watch*** using Visual Studio
 
 ### **2) Manual**
 
-	1. Use ***break point*** in your code and click the magnifying glass that appears when you hover your mouse over the Mat image variable name.
+1. Use ***break point*** in your code and click the magnifying glass that appears when you hover your mouse over the Mat image variable name.
 
 ![img4](https://user-images.githubusercontent.com/84509483/227228282-c7a63210-7a10-46ff-8729-9fbaeea2716b.PNG)
 

@@ -22,7 +22,7 @@ int main()
 		waitKey(0);
 	}
 	// Create a window to display results
-	namedWindow("DemoWIndow", CV_WINDOW_AUTOSIZE); //CV_WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
+	namedWindow("DemoWIndow", WINDOW_AUTOSIZE); //WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
 	if (!src.empty())imshow("DemoWIndow", src); // Show image
 
 
@@ -41,7 +41,7 @@ int main()
 	threshold(src, dst, threshold_value, max_BINARY_value, threshold_type);
 
 	// Create a window to display results
-	namedWindow("ThreshWIndow", CV_WINDOW_AUTOSIZE); //CV_WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
+	namedWindow("ThreshWIndow", WINDOW_AUTOSIZE); //WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
 	imshow("ThreshWIndow", dst); // Show image
 
 	waitKey(0);//Pause the program

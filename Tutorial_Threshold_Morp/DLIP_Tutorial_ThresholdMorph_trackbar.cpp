@@ -40,10 +40,10 @@ void Morphology_Demo(int, void*);
 int main()
 {
 	// Load an image
-	src = imread("Finger_print_gray.tif", IMREAD_COLOR);
+	src = imread("../../../Image/Finger_print_gray.tif", IMREAD_COLOR);
 
 	// Convert the image to Gray
-	cvtColor(src, src_gray, CV_BGR2GRAY);
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
 
 	// Create a window to display the results
 	namedWindow(window_name, WINDOW_NORMAL);
@@ -67,7 +67,7 @@ int main()
 
 void Threshold_Demo(int, void*)	// default form of callback function for trackbar
 {
-	/* 
+	/*
 	* 0: Binary
 	* 1: Threshold Truncated
 	* 2: Threshold to Zero
@@ -87,12 +87,13 @@ void Morphology_Demo(int, void*)  // default form of callback function for track
 	* 3: Close
 	* 4: Open
 	*/
+
 	switch (morphology_type) {
 	case 0: dst.copyTo(dst_morph);	break;
 	case 1: erode(dst, dst_morph, element); break;
 	case 2: dilate(dst, dst_morph, element); break;
-	case 3: morphologyEx(dst, dst_morph, CV_MOP_OPEN, element); break;
-	case 4: morphologyEx(dst, dst_morph, CV_MOP_CLOSE, element); break;
+	case 3: morphologyEx(dst, dst_morph, MORPH_OPEN, element); break;
+	case 4: morphologyEx(dst, dst_morph, MORPH_CLOSE, element); break;
 	}
 	imshow(window_name, dst_morph);
 }

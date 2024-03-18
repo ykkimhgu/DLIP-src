@@ -16,8 +16,9 @@ using namespace cv;
 int main(int argc, char** argv)
 {
     //! [Load image]
-    CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
-    Mat src = imread(samples::findFile(parser.get<String>("@input")), 0);
+    //CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
+    //Mat src = imread(samples::findFile(parser.get<String>("@input")), 0);
+    Mat src = imread("../../../Image/coin.jpg", 0);
     if (src.empty())
     {
         return EXIT_FAILURE;
@@ -42,14 +43,14 @@ int main(int argc, char** argv)
     calcHist(&src, 1, 0, Mat(), hist1D, 1, &histSize, &histRange, uniform, accumulate);
 
 
-    
+
     //! [Compute the histograms]
 
     //! [Draw the histograms for B, G and R]
     int hist_w = 512, hist_h = 400;
     int bin_w = cvRound((double)hist_w / histSize);
 
-    
+
     Mat histImage1D(hist_h, hist_w, CV_8UC1, Scalar(0));
     normalize(hist1D, hist1D, 0, histImage1D.rows, NORM_MINMAX, -1, Mat());
 

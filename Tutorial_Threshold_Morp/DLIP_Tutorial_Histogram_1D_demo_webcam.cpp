@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 
-		cvtColor(src, src, CV_BGR2GRAY);
+		cvtColor(src, src, COLOR_BGR2GRAY);
 		equalizeHist(src, dst);
 
 		keyIn = waitKey(delay_waitKey);
@@ -36,9 +36,9 @@ int main(int argc, char* argv[]) {
 			cout << "esc key is pressed by user" << endl;
 			break;
 		}
-		
+
 		imshow("src", src);
-		imshow("dst", dst);	
+		imshow("dst", dst);
 		plotHist(src, "histplot_src", src.cols, src.rows);
 		plotHist(dst, "histplot_dst", dst.cols, dst.rows);
 	}

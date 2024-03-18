@@ -16,14 +16,16 @@ using namespace cv;
 int main(int argc, char** argv)
 {
     //! [Load image]
-    CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
-    Mat src = imread(samples::findFile(parser.get<String>("@input")), IMREAD_COLOR);
+    //CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
+    //Mat src = imread(samples::findFile(parser.get<String>("@input")), IMREAD_COLOR);
+    Mat src = imread("../../../Image/coin.jpg", IMREAD_COLOR);
+
     if (src.empty())
     {
         return EXIT_FAILURE;
     }
     //! [Load image]
-
+    
     //! [Separate the image in 3 places ( B, G and R )]
     vector<Mat> bgr_planes;
     split(src, bgr_planes);

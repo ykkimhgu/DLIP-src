@@ -1,7 +1,7 @@
 /*------------------------------------------------------/
 * Image Proccessing with Deep Learning
 * OpenCV : Histogram Demo (from OpenCV docs)
-* https://docs.opencv.org/3.4/d8/dbc/tutorial_histogram_calculation.html
+* https://docs.opencv.org/4.9.0/d8/dbc/tutorial_histogram_calculation.html
 * Created: 2021-Spring
 ------------------------------------------------------*/
 

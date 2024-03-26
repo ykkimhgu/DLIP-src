@@ -28,7 +28,7 @@ void CannyThreshold(int, void*)
 
 
 	/// Canny detector
-	Canny(detected_edges, detected_edges, lowThreshold, lowThreshold*ratio, kernel_size);
+	Canny(detected_edges, detected_edges, lowThreshold, lowThreshold * ratio, kernel_size);
 
 	/// Using Canny's output as a mask, we display our result
 	dst = Scalar::all(0);
@@ -43,7 +43,7 @@ int main(int argc, char** argv)
 {
 	/// Load an image
 	//const char* filename = "../images/pillsetc.png";
-	const char* filename = "../images/coins.png";
+	const char* filename = "../../../Image/coins.png";
 	//const char* filename = "../images/TrafficSign1.png";
 
 	/// Read the image
@@ -58,10 +58,10 @@ int main(int argc, char** argv)
 	dst.create(src.size(), src.type());
 
 	/// Convert the image to grayscale
-	cvtColor(src, src_gray, CV_BGR2GRAY);
+	cvtColor(src, src_gray, COLOR_BGR2GRAY);
 
 	/// Create a window
-	namedWindow(window_name, CV_WINDOW_AUTOSIZE);
+	namedWindow(window_name, WINDOW_AUTOSIZE);
 
 	/// Create a Trackbar for user to enter threshold
 	createTrackbar("Min Threshold:", window_name, &lowThreshold, max_lowThreshold, CannyThreshold);

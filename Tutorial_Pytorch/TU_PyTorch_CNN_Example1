@@ -1,5 +1,5 @@
 ##########################################################
-# PyTorch Tutorial:  Overview of ANN Model Train and Test
+# PyTorch Tutorial:  Overview of CNN Model Train and Test
 #
 # This example is creating and testing a MLP model 
 # Used MNIST

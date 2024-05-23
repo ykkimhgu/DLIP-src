@@ -1,6 +1,6 @@
 import cv2
 
-image_path = 'dataset_mask/archive/obj/2-with-mask'
+image_path = 'datasets/dataset_mask/archive/obj/2-with-mask'
 
 image = cv2.imread(image_path + '.jpg')
 

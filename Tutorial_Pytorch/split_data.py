@@ -2,16 +2,16 @@ import os, shutil, random
 
 # preparing the folder structure
 
-full_data_path = 'dataset_mask/archive/obj/'
+full_data_path = 'datasets/dataset_mask/archive/obj/'
 extension_allowed = '.jpg'
 split_percentage = 90
 
-images_path = 'dataset_mask/images/'
+images_path = 'datasets/dataset_mask/images/'
 if os.path.exists(images_path):
     shutil.rmtree(images_path)
 os.mkdir(images_path)
     
-labels_path = 'dataset_mask/labels/'
+labels_path = 'datasets/dataset_mask/labels/'
 if os.path.exists(labels_path):
     shutil.rmtree(labels_path)
 os.mkdir(labels_path)

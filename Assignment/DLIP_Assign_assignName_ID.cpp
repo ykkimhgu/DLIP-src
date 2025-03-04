@@ -7,12 +7,33 @@ Modified        : 01-04-2023
 Language/ver	: C++
 Course			: Deep Learning & Image Processing
 
-Description     : Assignment 7 Eigenvalue,Eigenvector (ex)
+Description     : "write name of Assignment"
 /------------------------------------------------------------------------------------------*/
 
+#include <iostream>
+#include <opencv.hpp>
 
-// [ MODIFY Path and name of Headerfiles]
-#include "../../include/myMatrix.h"
-#include "../../include/myNP.h"
+using namespace std;
+using namespace cv;
 
+int main()
+{
+  /*  read image  */
+  String filename1 = "image.jpg";  // class
+  Mat img = imread(filename1);  //Mat class
+  Mat img_gray = imread("image.jpg", 0);  // read in grayscale
+  
+  /*  write image  */
+  String filename2 = "writeTest.jpg";  // C++ class/syntax (String, cout, cin)
+  imwrite(filename2, img);
+ 
+  /*  display image  */
+  namedWindow("image", WINDOW_AUTOSIZE);
+  imshow("image", img);
+  
+  namedWindow("image_gray", WINDOW_AUTOSIZE);
+  imshow("image_gray", img_gray);
+  
+  waitKey(0);
+}
 

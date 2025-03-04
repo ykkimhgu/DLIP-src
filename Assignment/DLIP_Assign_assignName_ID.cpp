@@ -5,7 +5,7 @@ Author          : Young-Keun Kim
 Created         : 01-04-2019
 Modified        : 01-04-2023
 Language/ver	: C++
-Course			: Deep Learning & Image Processing
+Course		: Deep Learning & Image Processing
 
 Description     : "write name of Assignment"
 /------------------------------------------------------------------------------------------*/

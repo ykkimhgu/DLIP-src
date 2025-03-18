@@ -29,9 +29,9 @@ Mat src, src_gray, dst, dst_morph;
 
 // Trackbar strings
 String window_name = "Threshold & Morphology Demo";
-String trackbar_type = "Thresh Type: \n 0: Binary \n 1: Binary Inverted \n 2: Truncate \n 3: To Zero \n 4: To Zero Invertd";
-String trackbar_value = "Thresh Value";
-String trackbar_morph = "Morph Type 0: None \n 1: erode \n 2: dilate \n 3: close \n 4: open";
+String trackbar_type = "TH Type:";// 0: Binary \n 1: Binary Inverted \n 2: Truncate \n 3: To Zero \n 4: To Zero Invert";
+String trackbar_value = "TH Value";
+String trackbar_morph = "Morph Type"; // 0: None \n 1: erode \n 2: dilate \n 3: close \n 4: open";
 
 // Function headers
 void Threshold_Demo(int, void*);

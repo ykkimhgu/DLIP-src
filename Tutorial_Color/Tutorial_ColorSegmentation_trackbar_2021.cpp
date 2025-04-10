@@ -103,7 +103,7 @@ int main()
 
 
 		///  Find All Contour   ///
-		findContours(dst, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+		findContours(dst, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 		if (contours.size()>0)
 		{ 

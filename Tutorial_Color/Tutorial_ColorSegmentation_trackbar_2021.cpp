@@ -52,8 +52,10 @@ int main()
 		// YOUR CODE GOES HERE
 		// YOUR CODE GOES HERE
 
-
-
+                 
+		// [WARNING!!!!]
+		// you MUST convert image to hsv first!!!!. Otherwise, you will get run-time error
+                //
 		/// set dst as the output of InRange
 		inRange(hsv, Scalar(MIN(hmin, hmax), MIN(smin, smax), MIN(vmin, vmax)),
 			Scalar(MAX(hmin, hmax), MAX(smin, smax), MAX(vmin, vmax)), dst);

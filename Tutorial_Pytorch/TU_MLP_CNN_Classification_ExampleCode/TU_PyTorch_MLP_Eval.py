@@ -98,13 +98,10 @@ print(images.size())
 
 
 # Evaluate on one batch test images
+images, labels = images.to(device), labels.to(device)
 with torch.no_grad():
-  for X, y in dataiter:
-      X, y = X.to(device), y.to(device)
-      
-      # Prediction Label 
-      pred = model(X)
-      _, predicted = torch.max(pred.data, 1)
+    pred = model(images)
+    _, predicted = torch.max(pred.data, 1)
 
 
 # Plot 9 output images

@@ -30,12 +30,12 @@ void main()
 
 	/* Median Filter */
 	cv::medianBlur(src, dst, i);
-	namedWindow("Median", CV_WINDOW_AUTOSIZE);
+	namedWindow("Median", WINDOW_AUTOSIZE);
 	imshow("Median", dst);
 
 	/* Bilateral filter */
 	cv::bilateralFilter(src, dst, i, i * 2, i / 2);
-	namedWindow("Bilateral", CV_WINDOW_AUTOSIZE);
+	namedWindow("Bilateral", WINDOW_AUTOSIZE);
 	imshow("Bilateral", dst);
 
 	/* Laplacian Filter */
@@ -47,7 +47,7 @@ void main()
 	src.convertTo(src, CV_16S);
 	cv::Mat result_laplcaian = src - dst;
 	result_laplcaian.convertTo(result_laplcaian, CV_8U);
-	namedWindow("Laplacian", CV_WINDOW_AUTOSIZE);
+	namedWindow("Laplacian", WINDOW_AUTOSIZE);
 	cv::imshow("Laplacian", result_laplcaian);
 
 
@@ -63,7 +63,7 @@ void main()
 	kernel = Mat::ones(kernel_size, kernel_size, CV_32F) / (float)(kernel_size * kernel_size);
 	filter2D(src, dst, ddepth, kernel, anchor, delta);
 	
-	namedWindow("Conv2D", CV_WINDOW_AUTOSIZE);
+	namedWindow("Conv2D", WINDOW_AUTOSIZE);
 	cv::imshow("Conv2D", dst);
 
 
